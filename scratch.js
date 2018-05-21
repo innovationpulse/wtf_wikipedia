@@ -1,26 +1,28 @@
-'use strict';
 const wtf = require('./src/index');
-// const fromFile = require('./tests/lib/_cachedPage');
+const readFile = require('./tests/lib/_cachedPage');
 // const wtf = require('./builds/wtf_wikipedia');
 // const wtf = require('./build');
 
-// todo:
-// description(), extract(), summary()
-
+// `The '''Lot''' ({{lang-oc|Olt}}) is a river in southern [[France]]`
+// var str = `{{Time ago| Jan 21, 2001 3:45 PM}}`;
 //doc.infoboxes('Venue')
 
-// let doc = fromFile('royal_cinema');
-// let doc = fromFile('toronto');
-// console.log(doc.sentences(0).text());
-// console.log(doc.sections('Infrastructure').json());
-// // wtf.fetch('Royal Cinema').then((doc) => {
-// //   console.log(doc.json({
-// //     categories: false
-// //   }));
-// // }).catch(console.log);
+// let doc = fromFile('Bradley-(community),-Lincoln-County,-Wisconsin');
+// console.log(doc.citations());
 
-// console.log(wtf(wiki).json({
-//   images: true
-// }));
-let wiki = `'''Toronto''' ({{IPAc-en|t|ɵ|ˈ|r|ɒ|n|t|oʊ}}, {{IPAc-en|local|ˈ|t|r|ɒ|n|oʊ}}) is the [[List of the 100 largest municipalities in Canada by population|most populous city]] in [[Canada]] and the [[Provinces and territories of Canada|provincial]] [[capital city|capital]] of [[Ontario]]. It is located in [[Southern Ontario]] on the northwestern shore of [[Lake Ontario]]. The [[history of Toronto]] began in the late 18th century when the [[The Crown|British Crown]] [[Toronto Purchase|purchased]] its land from the [[Mississaugas of the New Credit`;
-console.log(wtf(wiki).plaintext());
+var str = `{{infobox settlement
+|blank_name = [[Geographic Names Information System|GNIS]] feature ID
+|blank_info = 1562127<ref>{{cite gnis|na=1562127|Bradley}}</ref>
+}}
+`;
+let doc = wtf(str);
+// console.log(doc.plaintext());
+console.log(doc.templates());
+// console.log(doc.infoboxes(0).get('blank_info'));
+// console.log(doc.citations());
+
+// let str = `{{IMDb title | id= 0426883 | title= Alpha Dog }}`;
+// var arr = wtf(str).templates();
+// console.log(arr);
+
+// readFile('bluejays').tables(0);
